@@ -1,0 +1,11 @@
+{
+    "manifest_version": 2,
+    "name": "Bookmarks",
+    "description": "Shows your bookmarks in a handy popup",
+    "version": "1.0",
+    "permissions": ["bookmarks"],
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    }
+}

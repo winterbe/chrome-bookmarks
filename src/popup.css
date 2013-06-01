@@ -1,0 +1,46 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 20px;
+    color: #333333;
+    white-space: nowrap;
+}
+
+a:focus {
+    outline: none;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background: #0081c2 linear-gradient(to bottom, #0088cc, #0077b3) repeat-x;
+}
+
+.folder {
+    position: relative;
+    color: #888;
+}
+
+.folder .caret {
+    position: absolute;
+    right: 10px;
+}
+
+.link {
+    color: #333;
+}
+
+.alert {
+    color: #8b0000;
+}
