@@ -1,7 +1,23 @@
 window.UiFactory = function() {
 
+    function updateView(node, path) {
+        updateBreadcrumb(path);
+        updateContent(node.children);
+    }
+
+    function updateBreadcrumb(path) {
+        var $breadcrumb = $('#wrap').find('.breadcrumbs');
+        var text = '';
+        for (var i = 0; i < path.length; i++) {
+            var node = path[i];
+            text += node.title;
+            text += ' '
+        }
+        $breadcrumb.text(text || 'Bookmarks');
+    }
+
     function updateContent(nodes) {
-        var $content = $('#content');
+        var $content = $('#wrap').find('.content');
         $content.html('');
 
         for (var i = 0; i < nodes.length; i++) {
@@ -31,7 +47,46 @@ window.UiFactory = function() {
     }
 
     return {
-        updateContent: updateContent
+        updateView: updateView
+    }
+}();
+
+window.NodeHelper = function() {
+    var findNode = function (node, id, path) {
+        var result = findNodeRec(node, String(id), path);
+        if (result == null) {
+            throw new Error('bookmark does not exist: ' + id);
+        }
+        path.pop(); // remove root node
+        path.reverse();
+        return result;
+    };
+
+    var findNodeRec = function (node, id, path) {
+        if (node && node.id == id) {
+            path.push(node);
+            return node;
+        }
+
+        var children = node.children;
+        if (!children || children.length === 0) {
+            return null;
+        }
+
+        for (var i = 0; i < children.length; i++) {
+            var child = children[i];
+            var found = findNodeRec(child, id, path);
+            if (found) {
+                path.push(node);
+                return found;
+            }
+        }
+
+        return null;
+    };
+
+    return {
+        findNode: findNode
     }
 }();
 
@@ -44,48 +99,28 @@ $(function () {
             .prependTo($('#content'));
     };
 
-    var findNode = function(node, id) {
-        if (node && node.id === id) {
-            return node;
-        }
-
-        var children = node.children;
-        if (!children || children.length === 0) {
-            return null;
-        }
-
-        for (var i = 0; i < children.length; i++) {
-            var child = children[i];
-            var found = findNode(child, id);
-            if (found) {
-                return found;
-            }
-        }
-
-        return null;
-    }
-
     var updateView = function(bookmarkId) {
         chrome.bookmarks.getTree(function (nodes) {
-            var root = nodes[0];
-            var node = findNode(root, bookmarkId);
-            if (node) {
-                UiFactory.updateContent(node.children);
-            } else {
-                showError("node not found: " + bookmarkId);
+            try {
+                var root = nodes[0];
+                var path = [];
+                var node = NodeHelper.findNode(root, bookmarkId, path);
+                UiFactory.updateView(node, path);
+            } catch (e) {
+                showError(e);
             }
         });
     };
 
-    updateView("1");
+    updateView(0);
 
 
-    $('#content')
-        .on('click', '.folder', function() {
+    $('#wrap')
+        .on('click', '.content .folder', function() {
             var bookmarkId = $(this).data('bookmarkId');
-            updateView(String(bookmarkId));
+            updateView(bookmarkId);
         })
-        .on('click', '.link', function() {
+        .on('click', '.content .link', function() {
             var url = $(this).attr('href');
             chrome.tabs.update(null, {url: url});
             window.close();

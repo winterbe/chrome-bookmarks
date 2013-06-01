@@ -1,6 +1,6 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     margin: 0;
     padding: 0;
     width: 200px;
@@ -15,6 +15,8 @@ a {
     line-height: 20px;
     color: #333333;
     white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid transparent;
 }
 
 a:focus {
@@ -22,9 +24,14 @@ a:focus {
 }
 
 a:hover {
-    color: #ffffff;
-    text-decoration: none;
-    background: #0081c2 linear-gradient(to bottom, #0088cc, #0077b3) repeat-x;
+    background: #025ee6 linear-gradient(#5db7fe, #025ee6);
+    box-shadow: 0 1px 0 #68ccff inset;
+    border: 1px solid #2a649b;
+    border-top-color: #2e6ca7;
+    border-bottom-color: #245483;
+    color: #fff;
+    text-shadow: 0 1px 0 #1a487a;
+    border-radius: 4px;
 }
 
 .folder {
@@ -39,8 +46,17 @@ a:hover {
 
 .link {
     color: #333;
+    font-weight: bold;
 }
 
 .alert {
     color: #8b0000;
+}
+
+.breadcrumbs {
+    font-size: 12px;
+    padding: 3px 20px;
+    line-height: 20px;
+    color: #333;
+    border-bottom: 1px solid #eee;
 }
