@@ -9,7 +9,7 @@ body {
 a {
     text-decoration: none;
     display: block;
-    padding: 3px 20px;
+    padding: 3px 15px;
     clear: both;
     font-weight: normal;
     line-height: 20px;
@@ -55,8 +55,10 @@ a:hover {
 
 .breadcrumbs {
     font-size: 12px;
-    padding: 3px 20px;
+    padding: 3px 15px;
     line-height: 20px;
     color: #333;
     border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    overflow: hidden;
 }
