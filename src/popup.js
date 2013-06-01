@@ -84,6 +84,11 @@ $(function () {
         .on('click', '.folder', function() {
             var bookmarkId = $(this).data('bookmarkId');
             updateView(String(bookmarkId));
+        })
+        .on('click', '.link', function() {
+            var url = $(this).attr('href');
+            chrome.tabs.update(null, {url: url});
+            window.close();
         });
 
 });
