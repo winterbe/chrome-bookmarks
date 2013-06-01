@@ -7,13 +7,12 @@ window.UiFactory = function() {
 
     function updateBreadcrumb(path) {
         var $breadcrumb = $('#wrap').find('.breadcrumbs');
-        var text = '';
-        for (var i = 0; i < path.length; i++) {
-            var node = path[i];
-            text += node.title;
-            text += ' '
+        var lastNode = path[path.length - 1];
+        var text = 'Bookmarks';
+        if (lastNode) {
+            text = lastNode.title;
         }
-        $breadcrumb.text(text || 'Bookmarks');
+        $breadcrumb.text(text);
     }
 
     function updateContent(nodes) {
