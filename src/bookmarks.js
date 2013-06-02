@@ -18,7 +18,7 @@ $(function () {
                 title = lastNode.title;
                 parentId = lastNode.parentId;
             }
-            var html = '<span class="title">{{title}}</span><span class="back-btn" data-parent-id="{{parentId}}">←</span>';
+            var html = '<span class="title">{{title}}</span>\n<span class="back-btn" data-parent-id="{{parentId}}">\n    <i class="icon-chevron-left"></i>\n</span>';
             html = html.replace('{{title}}', title);
             html = html.replace('{{parentId}}', parentId);
             $titlebar.html($(html));
@@ -40,7 +40,7 @@ $(function () {
         }
 
         function createFolder(node) {
-            var html = '<a class="folder" href="#" data-bookmark-id="{{id}}">{{title}}<span class="caret">&rarr;</span></a>';
+            var html = '<a class="folder" href="#" data-bookmark-id="{{id}}">\n    {{title}}\n    <span class="caret">\n        <i class="icon-chevron-right"></i>\n    </span>\n</a>';
             html = html.replace('{{title}}', node.title);
             html = html.replace('{{id}}', node.id);
             return $(html);
