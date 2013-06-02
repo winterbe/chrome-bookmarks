@@ -1,10 +1,14 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Verdana, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     margin: 0;
     padding: 0;
     width: 200px;
     -webkit-user-select: none;
+}
+
+.content {
+    padding: 5px 0 4px 0;
 }
 
 a {
@@ -18,6 +22,11 @@ a {
     white-space: nowrap;
     overflow: hidden;
     border: 1px solid transparent;
+    border-bottom: 1px solid #eee;
+}
+
+a:last-of-type {
+    border-bottom: 1px solid transparent;
 }
 
 a:focus {
@@ -25,19 +34,13 @@ a:focus {
 }
 
 a:hover {
-    background: #025ee6 linear-gradient(#5db7fe, #025ee6);
-    box-shadow: 0 1px 0 #68ccff inset;
-    border: 1px solid #2a649b;
-    border-top-color: #2e6ca7;
-    border-bottom-color: #245483;
-    color: #fff;
-    text-shadow: 0 1px 0 #1a487a;
-    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+    border-bottom: 1px solid #fff;
 }
 
 .folder {
     position: relative;
-    color: #888;
+    color: #4d6eaa;
 }
 
 .folder .caret {
@@ -45,21 +48,30 @@ a:hover {
     right: 10px;
 }
 
-.link {
-    color: #333;
-    font-weight: normal;
-
+.folder:not(:hover) .caret {
+    color: #ccc;
 }
 
-.link img {
+.link {
+    position: relative;
+    color: #555;
+}
+
+.link:hover {
+    color: #222;
+}
+
+.link .favicon {
+    position: absolute;
+    right: 4px;
     -webkit-filter: grayscale(1);
-    opacity: 0.5;
+    opacity: 0.3;
     vertical-align: middle;
     border-radius: 3px;
     margin-right: 3px;
 }
 
-.link:hover img {
+.link:hover .favicon {
     -webkit-filter: grayscale(0);
     opacity: 1.0;
 }
