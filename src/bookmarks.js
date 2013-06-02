@@ -1,18 +1,18 @@
 window.UiFactory = function() {
 
     function updateView(node, path) {
-        updateBreadcrumb(path);
+        updateTitlebar(path);
         updateContent(node.children);
     }
 
-    function updateBreadcrumb(path) {
-        var $breadcrumb = $('#wrap').find('.breadcrumbs');
+    function updateTitlebar(path) {
+        var $titlebar = $('#wrap').find('.titlebar');
         var lastNode = path[path.length - 1];
         var text = 'Bookmarks';
         if (lastNode) {
             text = lastNode.title;
         }
-        $breadcrumb.text(text);
+        $titlebar.text(text);
     }
 
     function updateContent(nodes) {
