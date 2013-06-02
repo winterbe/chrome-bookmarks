@@ -8,11 +8,16 @@ window.UiFactory = function() {
     function updateTitlebar(path) {
         var $titlebar = $('#wrap').find('.titlebar');
         var lastNode = path[path.length - 1];
-        var text = 'Bookmarks';
+        var title = 'Bookmarks';
+        var parentId = '-1';
         if (lastNode) {
-            text = lastNode.title;
+            title = lastNode.title;
+            parentId = lastNode.parentId;
         }
-        $titlebar.text(text);
+        var html = '<span class="title">{{title}}</span><span class="back-btn" data-parent-id="{{parentId}}">←</span>';
+        html = html.replace('{{title}}', title);
+        html = html.replace('{{parentId}}', parentId);
+        $titlebar.html($(html));
     }
 
     function updateContent(nodes) {
@@ -123,6 +128,10 @@ $(function () {
             var url = $(this).attr('href');
             chrome.tabs.update(null, {url: url});
             window.close();
+        })
+        .on('click', '.titlebar .back-btn', function() {
+            var parentId = $(this).data('parentId');
+            updateView(parentId);
         });
 
 });
