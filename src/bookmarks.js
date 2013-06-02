@@ -18,7 +18,7 @@ $(function () {
                 title = lastNode.title;
                 parentId = lastNode.parentId;
             }
-            var html = '<span class="title">{{title}}</span>\n<span class="back-btn" data-parent-id="{{parentId}}">\n    <i class="icon-chevron-left"></i>\n</span>';
+            var html = '<span class="title">{{title}}</span>\n<span class="back-btn" data-parent-id="{{parentId}}">\n    <i class="icon-chevron-left"></i>\n</span>\n<div class="shadow"></div> ';
             html = html.replace('{{title}}', title);
             html = html.replace('{{parentId}}', parentId);
             $titlebar.html($(html));
