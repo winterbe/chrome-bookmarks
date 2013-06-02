@@ -47,10 +47,11 @@ $(function () {
         }
 
         function createLink(node) {
-            var html = '<a class="link" href="{{url}}" data-bookmark-id="{{id}}">{{title}}</a>';
+            var html = '<a class="link" href="{{url}}" data-bookmark-id="{{id}}">\n    <img src="{{faviconUrl}}"> {{title}}\n</a>';
             html = html.replace('{{title}}', node.title);
             html = html.replace('{{id}}', node.id);
             html = html.replace('{{url}}', node.url);
+            html = html.replace('{{faviconUrl}}', 'chrome://favicon/' + node.url);
             return $(html);
         }
 

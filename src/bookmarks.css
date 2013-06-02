@@ -48,7 +48,22 @@ a:hover {
 .link {
     color: #333;
     font-weight: bold;
+
 }
+
+.link img {
+    -webkit-filter: grayscale(1);
+    opacity: 0.5;
+    vertical-align: middle;
+    border-radius: 3px;
+    margin-right: 3px;
+}
+
+.link:hover img {
+    -webkit-filter: grayscale(0);
+    opacity: 1.0;
+}
+
 
 .alert {
     color: #8b0000;
